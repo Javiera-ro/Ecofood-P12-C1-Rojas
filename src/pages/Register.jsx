@@ -59,7 +59,7 @@ export default function Register() {
             className="form-control"
             value={nombre}
             onChange={(e) => setNombre(e.target.value)}
-            maxLength={40}
+            maxLength={50}
             required
           />
         </div>
@@ -70,7 +70,7 @@ export default function Register() {
             className="form-control"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            maxLength={60}
+            maxLength={50}
             required
           />
         </div>
@@ -81,7 +81,7 @@ export default function Register() {
             className="form-control"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            maxLength={30}
+            maxLength={20}
             required
           />
         </div>
@@ -92,7 +92,7 @@ export default function Register() {
             className="form-control"
             value={direccion}
             onChange={(e) => setDireccion(e.target.value)}
-            maxLength={80}
+            maxLength={50}
             required
           />
         </div>
