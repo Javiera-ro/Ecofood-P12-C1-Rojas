@@ -65,6 +65,9 @@ export default function Login() {
         <button type="submit" className="btn btn-primary">
           Iniciar Sesión
         </button>
+        <div className="mt-3">
+          <a href="/recuperar">¿Olvidaste tu contraseña?</a>
+        </div>
       </form>
     </div>
   );

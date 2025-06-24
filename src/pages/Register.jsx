@@ -1,4 +1,3 @@
-// src/pages/Register.jsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
@@ -55,27 +54,68 @@ export default function Register() {
       <form onSubmit={handleRegister}>
         <div className="mb-3">
           <label className="form-label">Nombre completo</label>
-          <input type="text" className="form-control" value={nombre} onChange={(e) => setNombre(e.target.value)} required />
+          <input
+            type="text"
+            className="form-control"
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value)}
+            maxLength={40}
+            required
+          />
         </div>
         <div className="mb-3">
           <label className="form-label">Correo electrónico</label>
-          <input type="email" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <input
+            type="email"
+            className="form-control"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            maxLength={60}
+            required
+          />
         </div>
         <div className="mb-3">
           <label className="form-label">Contraseña</label>
-          <input type="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          <input
+            type="password"
+            className="form-control"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            maxLength={30}
+            required
+          />
         </div>
         <div className="mb-3">
           <label className="form-label">Dirección</label>
-          <input type="text" className="form-control" value={direccion} onChange={(e) => setDireccion(e.target.value)} required />
+          <input
+            type="text"
+            className="form-control"
+            value={direccion}
+            onChange={(e) => setDireccion(e.target.value)}
+            maxLength={80}
+            required
+          />
         </div>
         <div className="mb-3">
           <label className="form-label">Comuna</label>
-          <input type="text" className="form-control" value={comuna} onChange={(e) => setComuna(e.target.value)} required />
+          <input
+            type="text"
+            className="form-control"
+            value={comuna}
+            onChange={(e) => setComuna(e.target.value)}
+            maxLength={40}
+            required
+          />
         </div>
         <div className="mb-3">
           <label className="form-label">Teléfono (opcional)</label>
-          <input type="tel" className="form-control" value={telefono} onChange={(e) => setTelefono(e.target.value)} />
+          <input
+            type="tel"
+            className="form-control"
+            value={telefono}
+            onChange={(e) => setTelefono(e.target.value)}
+            maxLength={15}
+          />
         </div>
         <button type="submit" className="btn btn-success">Registrar</button>
       </form>
