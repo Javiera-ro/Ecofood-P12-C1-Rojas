@@ -1,5 +1,7 @@
 import { useAuth } from "../../../context/AuthContext";
 import CerrarSesion from "../../CerrarSesion";
+import { Link } from "react-router-dom";
+
 
 export default function NavAdmin() {
     const { userData } = useAuth();
@@ -14,7 +16,13 @@ export default function NavAdmin() {
             <div className="collapse navbar-collapse" id="navbarText">
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                     <li className="nav-item">
-                        <a className="nav-link active" aria-current="page" href="#">Home</a>
+                        <Link to="/admin/dashboard" className="nav-link active">Dashboard</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/admin/empresas" className="nav-link">Empresas</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/admin/reportes">Reportes</Link>
                     </li>
                 </ul>
                 <span className="navbar-text">
