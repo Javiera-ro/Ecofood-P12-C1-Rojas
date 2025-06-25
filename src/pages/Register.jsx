@@ -70,7 +70,7 @@ export default function Register() {
             className="form-control"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            maxLength={50}
+            maxLength={40}
             required
           />
         </div>
@@ -92,7 +92,7 @@ export default function Register() {
             className="form-control"
             value={direccion}
             onChange={(e) => setDireccion(e.target.value)}
-            maxLength={50}
+            maxLength={40}
             required
           />
         </div>
@@ -114,7 +114,7 @@ export default function Register() {
             className="form-control"
             value={telefono}
             onChange={(e) => setTelefono(e.target.value)}
-            maxLength={15}
+            maxLength={20}
           />
         </div>
         <button type="submit" className="btn btn-success">Registrar</button>

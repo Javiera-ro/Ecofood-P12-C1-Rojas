@@ -3,7 +3,7 @@ import { Navigate, Outlet } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { getUserData } from "../services/userService";
 
-export default function ProtectedByRole({ allowed }) {
+export default function ProtectedByRole({ allowed, children }) {
   const { user } = useContext(AuthContext);
   const [role, setRole] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -29,5 +29,7 @@ export default function ProtectedByRole({ allowed }) {
     return <Navigate to="/login" />;
   }
 
-  return <Outlet />;
+  return children;
 }
+
+
