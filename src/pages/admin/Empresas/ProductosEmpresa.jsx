@@ -89,7 +89,6 @@ export default function ProductosEmpresa() {
             <option value="disponible">Disponible</option>
             <option value="por vencer">Por vencer</option>
             <option value="agotado">Agotado</option>
-            <option value="gratuito">Gratuito</option>
         </select>
         </div>
 
@@ -121,13 +120,19 @@ export default function ProductosEmpresa() {
                     <span className="badge bg-warning ms-2">¡Por vencer!</span>
                 )} </td>
               <td>{producto.cantidad}</td>
-              <td>{producto.precio === 0 ? "Gratuito" : `$${producto.precio}`}</td>
+
+              <td>{Number(producto.precio) === 0 ? (
+                <span className="badge bg-success">Gratis</span>
+              ) : (
+                <>${producto.precio}</>
+              )}
+              </td>
+
               <td>{producto.estado}</td>
               <td>
                 <button
                   className="btn btn-warning btn-sm me-2"
-                  onClick={() => setProductoSeleccionado(producto)}
-                >
+                  onClick={() => abrirModal(producto)}>
                   Editar
                 </button>
                 <button
