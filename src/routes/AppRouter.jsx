@@ -11,6 +11,8 @@ import Empresas from "../pages/admin/Empresas/Empresas";
 import Clientes from "../pages/admin/clientes/Clientes";
 import Administradores from "../pages/admin/administradores/Administradores";
 import Reportes from "../pages/admin/Reportes/Reportes";
+import PerfilEmpresa from "../pages/admin/Empresas/PerfilEmpresa";
+import ProductosEmpresa from "../pages/admin/Empresas/ProductosEmpresa";
 
 export default function AppRouter() {
     return (
@@ -35,8 +37,9 @@ export default function AppRouter() {
         <Route path="/home" element={
             <ProtectedRoute>
                 <Home />
-            </ProtectedRoute>
-        } />
+            </ProtectedRoute>} />
+        <Route path="/empresas/perfil" element={<PerfilEmpresa />} />
+        <Route path="/empresas/productos" element={<ProductosEmpresa />} />
     </Routes>
     );
 }
