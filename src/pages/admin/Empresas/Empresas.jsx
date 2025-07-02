@@ -34,7 +34,6 @@ export default function Empresas() {
   e.preventDefault();
   try {
     if (editandoId) {
-      // Modo editar
       await setDoc(doc(db, "empresas", editandoId), form);
       Swal.fire("Empresa actualizada", "", "success");
     } else {
@@ -106,6 +105,7 @@ const editarEmpresa = (empresa) => {
               value={form.nombre}
               onChange={handleChange}
               required
+              maxLength={50}
             />
           </div>
           <div className="col">
@@ -117,6 +117,7 @@ const editarEmpresa = (empresa) => {
               value={form.rut}
               onChange={handleChange}
               required
+              maxLength={12}
             />
           </div>
         </div>
@@ -130,6 +131,7 @@ const editarEmpresa = (empresa) => {
               value={form.direccion}
               onChange={handleChange}
               required
+              maxLength={50}
             />
           </div>
           <div className="col">
@@ -141,6 +143,7 @@ const editarEmpresa = (empresa) => {
               value={form.comuna}
               onChange={handleChange}
               required
+              maxLength={30}
             />
           </div>
         </div>
@@ -154,6 +157,7 @@ const editarEmpresa = (empresa) => {
               value={form.email}
               onChange={handleChange}
               required
+              maxLength={30}
             />
           </div>
           <div className="col">
@@ -164,6 +168,7 @@ const editarEmpresa = (empresa) => {
               placeholder="Teléfono"
               value={form.telefono}
               onChange={handleChange}
+              maxLength={10}
             />
           </div>
         </div>

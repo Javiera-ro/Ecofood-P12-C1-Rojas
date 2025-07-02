@@ -13,6 +13,7 @@ import Administradores from "../pages/admin/administradores/Administradores";
 import Reportes from "../pages/admin/Reportes/Reportes";
 import PerfilEmpresa from "../pages/admin/Empresas/PerfilEmpresa";
 import ProductosEmpresa from "../pages/admin/Empresas/ProductosEmpresa";
+import RutaEmpresa from "../components/RutaEmpresa";
 
 export default function AppRouter() {
     return (
@@ -33,6 +34,16 @@ export default function AppRouter() {
             <Route path="administradores" element={<Administradores />} />
             <Route path="reportes" element={<Reportes />} />
         </Route>
+        <Route path="/empresas/perfil" element={
+        <RutaEmpresa>
+            <PerfilEmpresa />
+        </RutaEmpresa>
+        } />
+        <Route path="/empresas/productos" element={
+        <RutaEmpresa>
+            <ProductosEmpresa />
+        </RutaEmpresa>
+        } />
 
         <Route path="/home" element={
             <ProtectedRoute>

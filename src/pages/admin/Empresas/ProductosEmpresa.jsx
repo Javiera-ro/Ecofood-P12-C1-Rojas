@@ -10,6 +10,7 @@ import {
 } from "firebase/firestore";
 import Swal from "sweetalert2";
 import ProductoModal from "../../../components/ProductoModal";
+import { getAuth } from "firebase/auth";
 
 export default function ProductosEmpresa() {
   const [productos, setProductos] = useState([]);
@@ -37,20 +38,29 @@ export default function ProductosEmpresa() {
   };
 
   const guardarProducto = async (producto) => {
-    try {
-      if (producto.id) {
-        await updateDoc(doc(db, "productos", producto.id), producto);
-        Swal.fire("Editado", "Producto actualizado correctamente", "success");
-      } else {
-        await addDoc(collection(db, "productos"), producto);
-        Swal.fire("Agregado", "Producto creado exitosamente", "success");
-      }
-      cerrarModal();
-      cargarProductos();
-    } catch (error) {
-      Swal.fire("Error", error.message, "error");
+  const auth = getAuth();
+  const user = auth.currentUser;
+
+  try {
+    if (producto.id) {
+      await updateDoc(doc(db, "productos", producto.id), producto);
+      Swal.fire("Editado", "Producto actualizado correctamente", "success");
+    } else {
+      await addDoc(collection(db, "productos"), {
+        ...producto,
+        empresaId: user.uid,
+        precio: parseFloat(producto.precio),
+        cantidad: parseInt(producto.cantidad),
+      });
+      Swal.fire("Agregado", "Producto creado exitosamente", "success");
     }
-  };
+    cerrarModal();
+    cargarProductos();
+  } catch (error) {
+    Swal.fire("Error", error.message, "error");
+  }
+};
+
 
   const eliminarProducto = async (id) => {
     const confirm = await Swal.fire({

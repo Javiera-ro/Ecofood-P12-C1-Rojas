@@ -29,24 +29,26 @@ import { Modal, Button, Form } from "react-bootstrap";
           <Form.Group className="mb-2">
             <Form.Label>Nombre</Form.Label>
             <Form.Control
-              type="text"
-              name="nombre"
-              value={producto.nombre || ""}
-              onChange={handleChange}
-              required
+            type="text"
+            name="nombre"
+            value={producto.nombre || ""}
+            onChange={handleChange}
+            maxLength={50}
+            required
             />
-          </Form.Group>
+            </Form.Group>
 
           <Form.Group className="mb-2">
             <Form.Label>Descripción</Form.Label>
             <Form.Control
-              type="text"
-              name="descripcion"
-              value={producto.descripcion || ""}
-              onChange={handleChange}
-              required
+            type="text"
+            name="descripcion"
+            value={producto.descripcion || ""}
+            onChange={handleChange}
+            maxLength={100}
+            required
             />
-          </Form.Group>
+            </Form.Group>
 
           <Form.Group className="mb-2">
             <Form.Label>Fecha de Vencimiento</Form.Label>
@@ -61,25 +63,25 @@ import { Modal, Button, Form } from "react-bootstrap";
 
           <Form.Group className="mb-2">
             <Form.Label>Cantidad</Form.Label>
-            <Form.Control
-              type="number"
-              name="cantidad"
-              value={producto.cantidad || ""}
-              onChange={handleChange}
-              required
-            />
-          </Form.Group>
+           <Form.Control
+            type="number"
+            name="cantidad"
+            value={producto.cantidad || ""}
+            onChange={handleChange}
+            required
+           />
+           </Form.Group>
 
           <Form.Group className="mb-2">
             <Form.Label>Precio</Form.Label>
             <Form.Control
-              type="number"
-              name="precio"
-              value={producto.precio || ""}
-              onChange={handleChange}
-              required
+            type="number"
+            name="precio"
+            value={producto.precio || ""}
+            onChange={handleChange}
+            required
             />
-          </Form.Group>
+           </Form.Group>
 
           <Form.Group className="mb-2">
             <Form.Label>Estado</Form.Label>
