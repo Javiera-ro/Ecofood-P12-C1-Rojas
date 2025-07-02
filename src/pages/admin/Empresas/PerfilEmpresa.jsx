@@ -115,8 +115,8 @@ useEffect(() => {
     className="form-control"
     name="email"
     value={form.email}
-    onChange={handleChange}
-    maxLength={100}
+    disabled
+    readOnly
   />
 </div>
 <div className="mb-2">

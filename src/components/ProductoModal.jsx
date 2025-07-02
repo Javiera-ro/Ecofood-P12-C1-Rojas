@@ -69,6 +69,9 @@ import { Modal, Button, Form } from "react-bootstrap";
             value={producto.cantidad || ""}
             onChange={handleChange}
             required
+            min={0}
+            max={1000}
+            step="any"
            />
            </Form.Group>
 
@@ -80,6 +83,9 @@ import { Modal, Button, Form } from "react-bootstrap";
             value={producto.precio || ""}
             onChange={handleChange}
             required
+            min={0}
+            max={999999}
+            step="any"
             />
            </Form.Group>
 
