@@ -40,23 +40,24 @@ export default function AppRouter() {
             <Route path="administradores" element={<Administradores />} />
             <Route path="reportes" element={<Reportes />} />
         </Route>
-        <Route path="/empresas/perfil" element={
-        <RutaEmpresa>
-            <PerfilEmpresa />
-        </RutaEmpresa>
-        } />
-        <Route path="/empresas/productos" element={
-        <RutaEmpresa>
-            <ProductosEmpresa />
-        </RutaEmpresa>
-        } />
+
+
+        <Route path="/empresas" element={
+            <ProtectedByRole allowed={["empresa"]}>
+                <AdminLayout />
+            </ProtectedByRole>}>
+            <Route index element={<Navigate to="dashboard" />} />
+            <Route path="dashboard" element={<h1>iniciooo </h1>} />
+            <Route path="perfil" element={<PerfilEmpresa />} />
+            <Route path="productos" element={<ProductosEmpresa />} />
+        </Route>
+        
+
 
         <Route path="/home" element={
             <ProtectedRoute>
                 <Home />
             </ProtectedRoute>} />
-        <Route path="/empresas/perfil" element={<PerfilEmpresa />} />
-       <Route path="/empresas/productos" element={<ProductosEmpresa />} />
         <Route path="/registro-empresa" element={<RegistroEmpresa />} />
         {/*<Route path="/cliente" element={<HomeCliente />} />
        // <Route path="/cliente/productos" element={<VerProductos />} />

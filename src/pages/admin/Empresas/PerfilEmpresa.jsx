@@ -18,7 +18,7 @@ useEffect(() => {
     const user = auth.currentUser;
     console.log("UID actual:", user?.uid);
     if (!user) return;
-    const querySnapshot = await getDocs(collection(db, "empresas"));
+    const querySnapshot = await getDocs(collection(db, "usuarios"));
     const empresaDoc = querySnapshot.docs.find((doc) => doc.data().uid === user.uid);
     if (empresaDoc) {
       const data = empresaDoc.data();
@@ -42,7 +42,7 @@ useEffect(() => {
 
   const guardarCambios = async () => {
   try {
-    const docRef = doc(db, "empresas", empresa.id);
+    const docRef = doc(db, "usuarios", empresa.id);
     await updateDoc(docRef, {
       ...form,
       uid: empresa.uid,

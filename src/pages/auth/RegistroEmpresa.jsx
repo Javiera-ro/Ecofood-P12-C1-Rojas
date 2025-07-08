@@ -4,6 +4,7 @@ import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/
 import { auth, db } from "../../services/firebase";
 import { collection, addDoc } from "firebase/firestore";
 import Swal from "sweetalert2";
+import { saveUserData } from "../../services/userService";
 
 export default function RegistroEmpresa() {
   const [nombre, setNombre] = useState("");
@@ -32,7 +33,18 @@ export default function RegistroEmpresa() {
       const cred = await createUserWithEmailAndPassword(auth, email, password);
       await sendEmailVerification(cred.user);
 
-      await addDoc(collection(db, "empresas"), {
+     /* await addDoc(collection(db, "usuarios"), {
+        uid: cred.user.uid,
+        nombre,
+        rut,
+        email,
+        direccion,
+        comuna,
+        telefono,
+        tipo,
+      });*/
+
+      await saveUserData(cred.user.uid, {
         uid: cred.user.uid,
         nombre,
         rut,
