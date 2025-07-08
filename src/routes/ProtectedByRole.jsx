@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { getUserData } from "../services/userService";
 
@@ -13,10 +13,13 @@ export default function ProtectedByRole({ allowed, children }) {
       if (user) {
         try {
           const data = await getUserData(user.uid);
-          setRole(data.tipo); // El campo "tipo" debe existir en Firestore
+          setRole(data?.tipo || null); // puede venir undefined
         } catch (error) {
           console.error("Error al obtener datos del usuario:", error);
+          setRole(null); // evitar pantalla blanca
         }
+      } else {
+        setRole(null);
       }
       setLoading(false);
     };
@@ -31,5 +34,3 @@ export default function ProtectedByRole({ allowed, children }) {
 
   return children;
 }
-
-

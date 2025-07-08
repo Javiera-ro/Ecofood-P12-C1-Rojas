@@ -3,6 +3,9 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import RecuperarContrasena from './pages/RecuperarContrasena';
+import ProductosEmpresa from './pages/empresas/ProductosEmpresa';
+import PerfilEmpresa from './pages/empresas/PerfilEmpresa';
+import RegistroEmpresa from './pages/auth/RegistroEmpresa';
 
 
 function AppRouter() {
@@ -14,7 +17,7 @@ function AppRouter() {
                 <Route path="/registro" element={<Register />} />
                 <Route path="/recuperar" element={<RecuperarContrasena />} />
                 <Route path="/home" element={<Home />} />
-            </Routes>
+                </Routes>
         </BrowserRouter>
     );
 }

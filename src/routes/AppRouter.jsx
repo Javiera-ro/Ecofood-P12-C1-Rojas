@@ -14,6 +14,12 @@ import Reportes from "../pages/admin/Reportes/Reportes";
 import PerfilEmpresa from "../pages/admin/Empresas/PerfilEmpresa";
 import ProductosEmpresa from "../pages/admin/Empresas/ProductosEmpresa";
 import RutaEmpresa from "../components/RutaEmpresa";
+import RegistroEmpresa from "../pages/auth/RegistroEmpresa";
+//import RegistroEmpresa from "../pages/auth/RegistroEmpresa";
+//import HomeCliente from "../pages/cliente/HomeCliente";
+//import VerProductos from "../pages/cliente/VerProductos";
+//import MisPedidos from "../pages/cliente/MisPedidos";
+//import EditarPerfil from "../pages/cliente/EditarPerfil";
 
 export default function AppRouter() {
     return (
@@ -50,7 +56,12 @@ export default function AppRouter() {
                 <Home />
             </ProtectedRoute>} />
         <Route path="/empresas/perfil" element={<PerfilEmpresa />} />
-        <Route path="/empresas/productos" element={<ProductosEmpresa />} />
+       <Route path="/empresas/productos" element={<ProductosEmpresa />} />
+        <Route path="/registro-empresa" element={<RegistroEmpresa />} />
+        {/*<Route path="/cliente" element={<HomeCliente />} />
+       // <Route path="/cliente/productos" element={<VerProductos />} />
+        //<Route path="/cliente/mis-pedidos" element={<MisPedidos />} />
+        //<Route path="/cliente/editar-perfil" element={<EditarPerfil />} />*/}
     </Routes>
     );
 }

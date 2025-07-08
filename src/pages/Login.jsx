@@ -8,6 +8,7 @@ import {
 import { useState } from "react";
 import { auth } from "../services/firebase";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -69,6 +70,10 @@ export default function Login() {
           <a href="/recuperar">¿Olvidaste tu contraseña?</a>
         </div>
       </form>
+       <p className="mt-3">
+          ¿Eres una empresa?{" "}
+          <Link to="/registro-empresa">Regístrate aquí</Link>
+        </p>
     </div>
   );
 }

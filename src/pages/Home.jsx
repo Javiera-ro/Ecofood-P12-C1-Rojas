@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getUserData } from "../services/userService";
 import { useAuth } from "../context/AuthContext";
 import CerrarSesion from "../components/CerrarSesion";
+import Navbar from "../components/Navbar";
 
 export default function Home() {
   const { user } = useAuth();
@@ -16,15 +17,18 @@ export default function Home() {
   }, [user]);
 
   return (
-    <div className="container mt-5">
-      <h2>Bienvenido/a a EcoFood</h2>
-      {userData && (
-        <>
-          <p>Nombre: {userData.nombre}</p>
-          <p>Tipo de usuario: {userData.tipo}</p>
-        </>
-      )}
-      <CerrarSesion />
-    </div>
+    <>
+      <Navbar />
+      <div className="container mt-5 text-center">
+        <h2>Bienvenida a EcoFood</h2>
+        {userData && (
+          <>
+            <p>Nombre: <strong>{userData.nombre}</strong></p>
+            <p>Tipo de usuario: <strong>{userData.tipo}</strong></p>
+          </>
+        )}
+        <CerrarSesion />
+      </div>
+    </>
   );
 }
