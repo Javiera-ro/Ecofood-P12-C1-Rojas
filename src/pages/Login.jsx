@@ -69,9 +69,8 @@ export default function Login() {
         <div className="mt-3">
           <a href="/recuperar">¿Olvidaste tu contraseña?</a>
         </div>
-        <p className="mt-3">
-          ¿Eres una empresa?{" "}
-          <Link to="/registro-empresa">Regístrate aquí</Link>
+        <p className="mt-3 text-center">
+          ¿No tienes cuenta? <Link to="/registro">Regístrate aquí</Link>
         </p>
       </form>
     </div>

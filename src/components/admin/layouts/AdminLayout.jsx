@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom"; 
-import NavAdmin from "./NavAdmin"; 
+import NavbarSwitcher from "../../NavbarSwitcher";
  
 export default function AdminLayout() { 
     return ( 
         <div> 
-            <NavAdmin /> 
+            <NavbarSwitcher />
             <main className="container mt-3"> 
                 <Outlet /> 
             </main> 

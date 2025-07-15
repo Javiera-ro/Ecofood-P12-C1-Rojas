@@ -21,3 +21,13 @@ Cerrar Sesión
 </button>
 );
 }
+
+export const cerrarSesionDirecto = async () => {
+  try {
+    await signOut(auth);
+    Swal.fire("Sesión cerrada", "Has cerrado sesión correctamente", "success");
+    window.location.href = "/login"; // redirige sin useNavigate
+  } catch (error) {
+    Swal.fire("Error", "No se pudo cerrar la sesión", "error");
+  }
+};

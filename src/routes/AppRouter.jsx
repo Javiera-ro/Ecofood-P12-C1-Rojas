@@ -13,13 +13,15 @@ import Administradores from "../pages/admin/administradores/Administradores";
 import Reportes from "../pages/admin/Reportes/Reportes";
 import PerfilEmpresa from "../pages/admin/Empresas/PerfilEmpresa";
 import ProductosEmpresa from "../pages/admin/Empresas/ProductosEmpresa";
-import RutaEmpresa from "../components/RutaEmpresa";
+//import RutaEmpresa from "../components/RutaEmpresa";
 import RegistroEmpresa from "../pages/auth/RegistroEmpresa";
 //import RegistroEmpresa from "../pages/auth/RegistroEmpresa";
-//import HomeCliente from "../pages/cliente/HomeCliente";
-//import VerProductos from "../pages/cliente/VerProductos";
-//import MisPedidos from "../pages/cliente/MisPedidos";
-//import EditarPerfil from "../pages/cliente/EditarPerfil";
+import HomeCliente from "../pages/cliente/HomeCliente";
+import VerProducto from "../pages/cliente/VerProducto";
+import MisPedidos from "../pages/cliente/MisPedidos";
+import EditarPerfil from "../pages/cliente/EditarPerfil";
+import SolicitudesEmpresa from "../pages/admin/Empresas/SolicitudesEmpresa";
+import DashboardEmpresa from "../pages/admin/Empresas/DashboardEmpresas";
 
 export default function AppRouter() {
     return (
@@ -41,28 +43,27 @@ export default function AppRouter() {
             <Route path="reportes" element={<Reportes />} />
         </Route>
 
-
         <Route path="/empresas" element={
             <ProtectedByRole allowed={["empresa"]}>
                 <AdminLayout />
             </ProtectedByRole>}>
             <Route index element={<Navigate to="dashboard" />} />
-            <Route path="dashboard" element={<h1>iniciooo </h1>} />
+            <Route path="dashboard" element={<DashboardEmpresa />} />
             <Route path="perfil" element={<PerfilEmpresa />} />
             <Route path="productos" element={<ProductosEmpresa />} />
+            <Route path="solicitudes" element={<SolicitudesEmpresa />} />
         </Route>
-        
-
 
         <Route path="/home" element={
             <ProtectedRoute>
                 <Home />
             </ProtectedRoute>} />
         <Route path="/registro-empresa" element={<RegistroEmpresa />} />
-        {/*<Route path="/cliente" element={<HomeCliente />} />
-       // <Route path="/cliente/productos" element={<VerProductos />} />
-        //<Route path="/cliente/mis-pedidos" element={<MisPedidos />} />
-        //<Route path="/cliente/editar-perfil" element={<EditarPerfil />} />*/}
+        <Route path="/cliente" element={<HomeCliente />} />
+        <Route path="/cliente/productos" element={<VerProducto />} />
+        <Route path="/cliente/mis-pedidos" element={<MisPedidos />} />
+        <Route path="/cliente/editar-perfil" element={<EditarPerfil />} />
+        <Route path="/cliente/mis-solicitudes" element={<MisPedidos />} />
     </Routes>
     );
 }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { db } from "../../../services/firebase";
-import Navbar from "../../../components/Navbar";
+import { query, where } from "firebase/firestore";
 import {
   collection,
   getDocs,
@@ -22,14 +22,22 @@ export default function ProductosEmpresa() {
   const [paginaActual, setPaginaActual] = useState(1);
   const productosPorPagina = 5;
 
-  const cargarProductos = async () => {
-    const snapshot = await getDocs(collection(db, "productos"));
-    const lista = snapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
-    setProductos(lista);
-  };
+const cargarProductos = async () => {
+  const auth = getAuth();
+  const user = auth.currentUser;
+
+  const q = query(
+    collection(db, "productos"),
+    where("empresaId", "==", user.uid)
+  );
+
+  const snapshot = await getDocs(q);
+  const lista = snapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
+  setProductos(lista);
+};
 
   const abrirModal = (producto = null) => {
     setProductoSeleccionado(producto);
@@ -44,12 +52,35 @@ export default function ProductosEmpresa() {
   const guardarProducto = async (producto) => {
   const auth = getAuth();
   const user = auth.currentUser;
+  if (!producto.nombre || producto.nombre.trim() === "") {
+  Swal.fire("Error", "El nombre del producto es obligatorio", "error");
+  return;
+}
+
+if (isNaN(producto.precio) || producto.precio < 0) {
+  Swal.fire("Error", "El precio debe ser un número mayor o igual a 0", "error");
+  return;
+}
+
+if (!producto.vencimiento) {
+  Swal.fire("Error", "La fecha de vencimiento es obligatoria", "error");
+  return;
+}
+
+if (new Date(producto.vencimiento) < new Date()) {
+  Swal.fire("Error", "La fecha de vencimiento no puede ser anterior a hoy", "error");
+  return;
+}
+
 
   try {
     if (producto.id) {
-      await updateDoc(doc(db, "productos", producto.id), producto);
-      Swal.fire("Editado", "Producto actualizado correctamente", "success");
-    } else {
+  const { id, ...productoSinId } = producto; 
+  await updateDoc(doc(db, "productos", id), productoSinId); 
+  Swal.fire("Editado", "Producto actualizado correctamente", "success");
+  }
+    
+    else {
       await addDoc(collection(db, "productos"), {
         ...producto,
         empresaId: user.uid,
@@ -131,8 +162,7 @@ export default function ProductosEmpresa() {
         <select
           className="form-select"
           value={filtroEstado}
-          onChange={(e) => setFiltroEstado(e.target.value)}
-        >
+          onChange={(e) => setFiltroEstado(e.target.value)}>
           <option value="">Todos</option>
           <option value="disponible">Disponible</option>
           <option value="por vencer">Por vencer</option>

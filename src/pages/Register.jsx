@@ -4,6 +4,7 @@ import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/
 import { auth } from "../services/firebase";
 import { saveUserData } from "../services/userService";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 export default function Register() {
   const [nombre, setNombre] = useState("");
@@ -37,7 +38,8 @@ export default function Register() {
         direccion,
         comuna,
         telefono,
-        tipo
+        tipo,
+        uid: cred.user.uid,
       });
 
       Swal.fire("Registro exitoso", "Revisa tu correo para verificar tu cuenta", "info");
@@ -119,6 +121,12 @@ export default function Register() {
         </div>
         <button type="submit" className="btn btn-success">Registrar</button>
       </form>
+      <p className="mt-3 text-center">
+        ¿Eres una empresa? <Link to="/registro-empresa">Regístrate como empresa</Link>
+      </p>
+      <p className="text-center">
+        ¿Ya tienes cuenta? <Link to="/login">Inicia sesión</Link>
+      </p>
     </div>
   );
 }

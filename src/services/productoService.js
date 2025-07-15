@@ -6,13 +6,17 @@ import {
   updateDoc,
   deleteDoc,
   doc,
+  query,
+  where,
 } from "firebase/firestore";
 
 export const obtenerProductos = async (empresaId) => {
-  const querySnapshot = await getDocs(collection(db, "productos"));
-  return querySnapshot.docs
-    .map((doc) => ({ id: doc.id, ...doc.data() }))
-    .filter((p) => p.empresaId === empresaId);
+  const q = query(
+    collection(db, "productos"),
+    where("empresaId", "==", empresaId)
+  );
+  const querySnapshot = await getDocs(q);
+  return querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 };
 
 export const crearProducto = async (producto) => {

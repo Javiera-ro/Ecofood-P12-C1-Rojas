@@ -5,6 +5,7 @@ import { auth, db } from "../../services/firebase";
 import { collection, addDoc } from "firebase/firestore";
 import Swal from "sweetalert2";
 import { saveUserData } from "../../services/userService";
+import { Link } from "react-router-dom";
 
 export default function RegistroEmpresa() {
   const [nombre, setNombre] = useState("");
@@ -145,6 +146,12 @@ export default function RegistroEmpresa() {
         </div>
         <button type="submit" className="btn btn-success">Registrar Empresa</button>
       </form>
+      <p className="mt-3 text-center">
+        ¿Eres cliente? <Link to="/registro">Regístrate como cliente</Link>
+      </p>
+      <p className="text-center">
+        ¿Ya tienes cuenta? <Link to="/login">Inicia sesión</Link>
+      </p>
     </div>
   );
 }
